@@ -1,0 +1,116 @@
+table review_sl
+	lineageTag: 053abbc5-bdd4-46e1-ac37-9076501adc0a
+	sourceLineageTag: [dbo].[review_sl]
+
+	column review_id
+		dataType: string
+		lineageTag: 7091f038-f097-448c-a12a-e844528ac036
+		sourceLineageTag: review_id
+		summarizeBy: none
+		sourceColumn: review_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_id
+		dataType: string
+		lineageTag: 9bd43c30-c4a2-41f3-a6c2-149441389cb7
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_score
+		dataType: int64
+		formatString: 0
+		lineageTag: 3cf009a2-791e-4b86-ac84-5a0df5c1b14c
+		sourceLineageTag: review_score
+		summarizeBy: sum
+		sourceColumn: review_score
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_comment_title
+		dataType: string
+		lineageTag: 090e4e0b-42c9-4c20-ba4e-04550526b9a0
+		sourceLineageTag: review_comment_title
+		summarizeBy: none
+		sourceColumn: review_comment_title
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_comment_message
+		dataType: string
+		lineageTag: 0260921c-f17e-4a69-ba78-c263d6db28e7
+		sourceLineageTag: review_comment_message
+		summarizeBy: none
+		sourceColumn: review_comment_message
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_creation_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 74f003f6-9c93-4dfa-b401-9f0809a5e56c
+		sourceLineageTag: review_creation_date
+		summarizeBy: none
+		sourceColumn: review_creation_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column review_answer_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d98aeb43-d061-4af1-affc-be41c0a8127d
+		sourceLineageTag: review_answer_timestamp
+		summarizeBy: none
+		sourceColumn: review_answer_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 284ef7e7-af32-45ee-beec-3086701f2cb0
+		sourceLineageTag: order_purchase_timestamp
+		summarizeBy: none
+		sourceColumn: order_purchase_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 74d3cc65-082b-4f99-b030-678aed663dc7
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: f12fa5ef-2781-4ed5-8420-1cf5b02234b7
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	column update_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 96374762-9aee-4ffb-ab54-7898f20d45e4
+		sourceLineageTag: update_time
+		summarizeBy: none
+		sourceColumn: update_time
+
+		annotation SummarizationSetBy = Automatic
+
+	partition review_sl = entity
+		mode: directLake
+		source
+			entityName: review_sl
+			schemaName: dbo
+			expressionSource: 'DirectLake - olist_LH'
+

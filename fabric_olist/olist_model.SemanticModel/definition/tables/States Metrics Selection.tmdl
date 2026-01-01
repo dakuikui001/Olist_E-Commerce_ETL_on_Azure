@@ -1,0 +1,52 @@
+table 'States Metrics Selection'
+	lineageTag: 29a802c6-da02-4fc9-8c51-375258ccbcbc
+
+	column 'States Metrics Selection'
+		lineageTag: 4d97ab9d-8dc6-4e50-ba3f-0c845e3be992
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'States Metrics Selection Order'
+
+		relatedColumnDetails
+			groupByColumn: 'States Metrics Selection Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'States Metrics Selection Fields'
+		isHidden
+		lineageTag: f34cdcad-85dd-45a2-8e66-703101889ec7
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'States Metrics Selection Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'States Metrics Selection Order'
+		isHidden
+		formatString: 0
+		lineageTag: 856fc0b2-635b-43ff-9754-1832172346fe
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'States Metrics Selection' = calculated
+		mode: import
+		source =
+				{
+				    ("Orders", NAMEOF('Measure Table'[Total Orders]), 0),
+				    ("returns", NAMEOF('Measure Table'[Total Returns]), 1),
+				    ("Sales", NAMEOF('Measure Table'[Total Sales]), 2),
+				    ("Freight Fee", NAMEOF('Measure Table'[Avg Freight Fee]), 3),
+				    ("Delivery Duration", NAMEOF('Measure Table'[Avg Delivery Duration]), 4),
+				    ("Return Rate", NAMEOF('Measure Table'[Return Rate]), 5)
+				}
+
+	annotation PBI_Id = 050381066e8c4baabec65eb5b7e01f01
+

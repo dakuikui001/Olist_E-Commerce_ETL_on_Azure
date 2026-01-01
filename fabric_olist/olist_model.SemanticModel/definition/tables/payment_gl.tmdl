@@ -1,0 +1,118 @@
+table payment_gl
+	lineageTag: 06600ddc-e630-4cbd-878b-ba6f9dfe0d56
+	sourceLineageTag: [dbo].[payment_gl]
+
+	column order_id
+		dataType: string
+		lineageTag: 2293dc37-551b-4e56-9fd7-d2b9abdf40f7
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_sequential
+		dataType: int64
+		formatString: 0
+		lineageTag: 4acc3a5a-f9e9-4e09-b618-87c05d755663
+		sourceLineageTag: payment_sequential
+		summarizeBy: sum
+		sourceColumn: payment_sequential
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_type
+		dataType: string
+		lineageTag: 6ec40889-244d-4be0-a13e-7679cd4e672d
+		sourceLineageTag: payment_type
+		summarizeBy: none
+		sourceColumn: payment_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_installments
+		dataType: int64
+		formatString: 0
+		lineageTag: 5a7e118e-9a3e-4eff-b843-a01de0937d5f
+		sourceLineageTag: payment_installments
+		summarizeBy: sum
+		sourceColumn: payment_installments
+
+		annotation SummarizationSetBy = Automatic
+
+	column payment_value
+		dataType: double
+		lineageTag: ff4caa28-cc19-44ea-a19e-e5c4a75c15ca
+		sourceLineageTag: payment_value
+		summarizeBy: sum
+		sourceColumn: payment_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_purchase_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 28eb6a4c-f14e-4de8-b30c-1446edde48b5
+		sourceLineageTag: order_purchase_timestamp
+		summarizeBy: none
+		sourceColumn: order_purchase_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dab2b2eb-81a0-426f-95fc-c0c4b2d7db5c
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: c8160a94-3ab9-44e2-b18c-87fe1bf05f60
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	column update_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6b41de48-ed3f-4191-b33d-c58aa7d9c2fa
+		sourceLineageTag: update_time
+		summarizeBy: none
+		sourceColumn: update_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c982312f-b949-4be0-935d-717868e996b9
+		sourceLineageTag: order_purchase_date
+		summarizeBy: none
+		sourceColumn: order_purchase_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_time
+		dataType: string
+		lineageTag: 589ada1f-ffa5-4b76-8370-f2e9590f62cf
+		sourceLineageTag: order_purchase_time
+		summarizeBy: none
+		sourceColumn: order_purchase_time
+
+		annotation SummarizationSetBy = Automatic
+
+	partition payment_gl = entity
+		mode: directLake
+		source
+			entityName: payment_gl
+			schemaName: dbo
+			expressionSource: 'DirectLake - olist_LH'
+

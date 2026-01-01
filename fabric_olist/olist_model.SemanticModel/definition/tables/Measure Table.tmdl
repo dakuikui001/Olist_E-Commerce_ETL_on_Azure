@@ -1,0 +1,148 @@
+table 'Measure Table'
+	lineageTag: 16dc0d9f-2df5-4714-8343-8d08de0522dc
+
+	measure 'Total Orders' = DISTINCTCOUNT(order_gl[order_id])
+		formatString: #,0
+		lineageTag: 3cefba7b-04ac-40bf-902b-79c24847b190
+
+	measure 'Total Sales' = SUM(order_item_gl[price])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: d98a6aa1-b5a8-4ee9-8cb7-615c63e235e6
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Returns' = CALCULATE(DISTINCTCOUNT(order_item_gl[order_id]), order_gl[order_status] = "canceled") + 0
+		formatString: 0
+		lineageTag: debc4595-6e2e-476e-8830-040d8fd8b89b
+
+	measure 'Return Rate' = DIVIDE([Total Returns], [Total Orders]) + 0
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f275a7fe-9085-4c7b-be90-12414b316768
+
+	measure DateExists = IF(ISBLANK(COUNT(order_gl[order_purchase_date])), 0, 1)
+		formatString: 0
+		lineageTag: d2f0ff67-7795-4f5a-85f9-17288c9fc5c4
+
+	measure 'Previous Week Orders' = CALCULATE([Total Orders], DATEADD(Date_Table[Date], -7, DAY))
+		formatString: 0
+		lineageTag: a95ebe45-49cf-45ec-ad52-6c24590770f4
+
+	measure 'Weekly Orders Target' = [Previous Week Orders] * 1.1
+		lineageTag: bf26f8dc-9e7a-46ae-a089-b6baae6179cd
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Previous Week Sales' = CALCULATE([Total Sales], DATEADD(Date_Table[Date], -7, DAY))
+		formatString: 0
+		lineageTag: 39ddf4ac-cbfc-4e33-9086-5a4b524ea29d
+
+	measure 'Weekly Sales Target' = [Previous Week Sales] * 1.1
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 71c76aee-8cca-4720-b075-b552444cbbff
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Total Revenue' = SUM(payment_gl[payment_value])
+		lineageTag: 7644b091-1f56-4347-86f9-2fa5add4ac65
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Previous Week Revenue' = CALCULATE([Total Revenue], DATEADD(Date_Table[Date], -7, DAY))
+		lineageTag: 713cb412-b87b-480a-9d57-830af23a0efa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Weekly Revenue Target' = [Previous Week Revenue] * 1.1
+		lineageTag: 5e613b07-570d-46dc-a31f-745c4b9c5a6b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AvgPrice = AVERAGE(order_item_gl[price])
+		lineageTag: ee5b68f7-6b90-4732-94ec-f71794087b94
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure AvgScore =
+			
+			AVERAGEX(
+			    KEEPFILTERS(review_sl),
+			    IF(review_sl[review_score] <> 0, review_sl[review_score], BLANK())
+			)
+		lineageTag: 13b49eef-89e2-4d06-bdd6-f5dc485898fb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Delivery Duration' = AVERAGE(order_gl[delivery_duration])
+		lineageTag: 0882b755-ffb0-4347-87a8-fe5411d28a51
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Freight Fee' = AVERAGE(order_item_gl[freight_value])
+		lineageTag: 2adf5b24-87ca-474c-aa62-cdf01914d698
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Customers' = DISTINCTCOUNT(order_gl[customer_id])
+		formatString: 0
+		lineageTag: b9e052d3-df8f-46e2-81f6-9b979c1bedbe
+
+	measure 'Avg Orders Per Customer' = DIVIDE([Total Orders], [Total Customers])
+		lineageTag: 8bb9c813-47d4-47ac-abe6-88316b1816e7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg Revenue Per Costomer' = DIVIDE([Total Revenue], [Total Customers])
+		lineageTag: 6ee9c19e-b7bd-46b6-a156-b8ad9513b763
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Order Count By Credit' = CALCULATE(DISTINCTCOUNT(payment_gl[order_id]), payment_gl[payment_type] = "credit_card")
+		formatString: 0
+		lineageTag: 5b0f6f76-2ccd-4ba0-ac11-9ab36cf8cfe4
+
+	measure 'Order Count By boleto' = CALCULATE(DISTINCTCOUNT(payment_gl[order_id]), payment_gl[payment_type] = "boleto")
+		formatString: 0
+		lineageTag: 2e174583-ecfd-44e8-827b-c5d4221e0d07
+
+	measure 'Order Count By voucher' = CALCULATE(DISTINCTCOUNT(payment_gl[order_id]), payment_gl[payment_type] = "voucher")
+		formatString: 0
+		lineageTag: e4f730c3-89e7-4340-a82f-93a4f718071a
+
+	measure 'Order Count By debit_card' = CALCULATE(DISTINCTCOUNT(payment_gl[order_id]), payment_gl[payment_type] = "debit_card")
+		formatString: 0
+		lineageTag: 5fb28c04-1b5f-4c73-88b7-5b75e09c24d3
+
+	measure 'Order Count By 18 – 25' = CALCULATE(DISTINCTCOUNT(order_item_gl[order_id]), customer_bz[age]>= 18 || customer_bz[age]<=25)
+		formatString: 0
+		lineageTag: e56be918-3dea-41b3-ba31-aef43aff61bc
+
+	measure 'Order Count By 26 – 40' = CALCULATE(DISTINCTCOUNT(order_item_gl[order_id]), customer_bz[age]>= 26 || customer_bz[age]<=40)
+		formatString: 0
+		lineageTag: fe73453c-a0be-40ba-8ed8-2f09dfea1279
+
+	measure 'Order Count By 41 – 60' = CALCULATE(DISTINCTCOUNT(order_item_gl[order_id]), customer_bz[age]>= 41 || customer_bz[age]<=60)
+		formatString: 0
+		lineageTag: f6a4b9e4-3d24-492e-a4a2-7388cf29c0e8
+
+	measure 'Order Count By 61-' = CALCULATE(DISTINCTCOUNT(order_item_gl[order_id]), customer_bz[age]>= 61)
+		formatString: 0
+		lineageTag: 5dba05bb-23bd-4fbc-b28b-c4496bda0264
+
+	measure 'Items Count' = COUNTROWS(order_item_gl)
+		formatString: 0
+		lineageTag: 1e77604a-e7a4-4996-b047-dac9aa81ca29
+
+	column Value
+		lineageTag: ce10d054-04a1-4294-bfee-98ee6f632174
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Measure Table' = calculated
+		mode: import
+		source = {""}
+
+	annotation PBI_Id = c2fc240edd1541d992e86796322bc815
+

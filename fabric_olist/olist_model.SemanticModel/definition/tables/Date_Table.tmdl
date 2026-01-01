@@ -1,0 +1,165 @@
+table Date_Table
+	lineageTag: a4016e7b-960f-4f55-9ade-8fef3b0594a4
+
+	column Date
+		formatString: yyyy-MM-dd
+		lineageTag: 59b1c1f6-c152-4ccf-80c1-b953c20221ac
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 31c37320-7185-4cf1-9fea-86324b2e6043
+			defaultHierarchy: LocalDateTable_6b2a3e27-ee1b-4c6e-bdf7-dd1afffa22a3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column Year
+		formatString: 0
+		lineageTag: e0e561f7-c755-40bf-ae98-d725607c63b3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		lineageTag: b07ccf95-6676-4308-bd69-713a52660a52
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNumber
+		formatString: 0
+		lineageTag: 3d815b3c-052e-48a1-9b2a-80db35529a80
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [MonthNumber]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		lineageTag: 3bd622b4-ca6d-4cab-b77a-681784bb95ce
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [MonthName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		lineageTag: 3b5b5d45-e5a4-415d-a3ae-382491177e54
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		lineageTag: 3319badb-81ee-4904-82b0-4b170cce2f67
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [DayName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayOfWeekNumber
+		formatString: 0
+		lineageTag: 70dc5684-5bf1-4e8f-9a1f-6d6e7776dd11
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [DayOfWeekNumber]
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartOfYear
+		formatString: Short Date
+		lineageTag: b806acdc-c790-4d0b-b851-743cbd39e7b9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [StartOfYear]
+
+		variation Variation
+			isDefault
+			relationship: 0396331d-c961-43a4-ab2d-eb177b831df5
+			defaultHierarchy: LocalDateTable_899ffb44-df81-47bc-a32b-9fca51d3c9e6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartOfMonth
+		formatString: yyyy-MM
+		lineageTag: 9c35ecef-e2c4-4c53-a203-cdda1c935153
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [StartOfMonth]
+
+		variation Variation
+			isDefault
+			relationship: 2583a71a-44e3-4f36-95d8-b8298d51fcd2
+			defaultHierarchy: LocalDateTable_cc9a2d45-e303-4ad1-a82b-7acb92c9df9f.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isCustom":true}
+
+	column StartOfWeek
+		formatString: Short Date
+		lineageTag: d589dad6-b0de-448b-95a0-14d074f6cb0f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [StartOfWeek]
+
+		variation Variation
+			isDefault
+			relationship: bc47dcbd-4a58-473c-8d6b-8faabe249856
+			defaultHierarchy: LocalDateTable_ff4a43a3-201a-484d-896a-609af64529af.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Date Hierarchy'
+		lineageTag: 98e92049-db17-43fc-861b-342517d3f39a
+
+		level Year
+			lineageTag: 650dfd1e-012d-4ed5-ae87-219859fe6f10
+			column: Year
+
+		level StartOfMonth
+			lineageTag: 115be2a7-4f07-4211-a860-71f3e2c5a8c3
+			column: StartOfMonth
+
+		level StartOfWeek
+			lineageTag: ac916321-a6b7-4338-8529-89a619e49b00
+			column: StartOfWeek
+
+		level Date
+			lineageTag: 57233a9f-505b-4e85-aa10-6fe9c36455f7
+			column: Date
+
+	partition Date_Table = calculated
+		mode: import
+		source = ```
+				
+				VAR StartDate = DATE(2016, 1, 1)
+				VAR EndDate = DATE(2018, 12, 31)
+				RETURN
+				ADDCOLUMNS (
+				    CALENDAR(StartDate, EndDate),
+				    "Year", YEAR([Date]),
+				    "Quarter", "Q" & FORMAT([Date], "Q"),
+				    "MonthNumber", MONTH([Date]),
+				    "MonthName", FORMAT([Date], "MMMM"),
+				    "YearMonth", FORMAT([Date], "YYYY-MM"),
+				    "DayName", FORMAT([Date], "DDDD"),
+				    "DayOfWeekNumber", WEEKDAY([Date], 2),
+				    "StartOfYear",  DATE( YEAR([Date]), 1, 1 ),
+				    "StartOfMonth", DATE( YEAR([Date]), MONTH([Date]), 1 ),
+				    "StartOfWeek",  [Date] - WEEKDAY([Date], 2) + 1 
+				)
+				```
+
+	annotation PBI_Id = 517a79bd5e934c599b77f5ef69c7fd91
+

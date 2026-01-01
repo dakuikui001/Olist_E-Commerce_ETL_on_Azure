@@ -1,0 +1,48 @@
+table product_category_bz
+	lineageTag: 3c965998-b0f7-4d9a-9504-1111711cb84e
+	sourceLineageTag: [dbo].[product_category_bz]
+
+	column product_category_name
+		dataType: string
+		lineageTag: 0cec4a96-f5ca-46c4-8038-d0bcbb7a042f
+		sourceLineageTag: product_category_name
+		summarizeBy: none
+		sourceColumn: product_category_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category_name_english
+		dataType: string
+		lineageTag: 50b8a02c-526c-4a2d-acbd-b995c6719ab5
+		sourceLineageTag: product_category_name_english
+		summarizeBy: none
+		sourceColumn: product_category_name_english
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5e793ed0-f11a-4c4c-a657-ac42dcf8b1e5
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: 4cbbcd1a-4981-4fd6-bff4-1365d2dc0d22
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	partition product_category_bz = entity
+		mode: directLake
+		source
+			entityName: product_category_bz
+			schemaName: dbo
+			expressionSource: 'DirectLake - olist_LH'
+

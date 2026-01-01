@@ -1,0 +1,38 @@
+table 'Price Adjustment'
+	lineageTag: c2e66ea0-9452-46c4-94f0-3a5f3c9257d9
+
+	measure 'Price Adjustment Value' = SELECTEDVALUE('Price Adjustment'[Price Adjustment])
+		lineageTag: 9f0c7ef5-cf74-4672-b7bd-e7db829df5c9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Adjusted Sales' =
+			
+			SUMX(
+			    order_item_gl,
+			    order_item_gl[price] * (1 + 'Price Adjustment'[Price Adjustment Value])
+			)
+		lineageTag: 0fe37e0c-8bdc-4ddc-ba77-577cd988977b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Price Adjustment'
+		lineageTag: 77e47d9c-8e7b-4e96-af8a-f0058a97bdb2
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Price Adjustment' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.1)
+
+	annotation PBI_Id = 1bd223cb7028492ea8ed43852f33013f
+

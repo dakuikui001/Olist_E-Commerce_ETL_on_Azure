@@ -1,0 +1,148 @@
+table order_item_gl
+	lineageTag: 8d15f595-1ec4-45d0-8929-eb3b5905da85
+	sourceLineageTag: [dbo].[order_item_gl]
+
+	column order_id
+		dataType: string
+		lineageTag: 60ecda14-53f8-42fd-bf34-b9ff51e3c453
+		sourceLineageTag: order_id
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_item_id
+		dataType: string
+		lineageTag: 1bffd0f9-cbd8-46c0-95c1-777687d69972
+		sourceLineageTag: order_item_id
+		summarizeBy: none
+		sourceColumn: order_item_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_id
+		dataType: string
+		lineageTag: 0b3f464c-1f61-48d0-8f01-63e6524c9afe
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_id
+		dataType: string
+		lineageTag: b06ffe95-1adc-49a3-bfe8-c2f066093c0e
+		sourceLineageTag: seller_id
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column shipping_limit_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 40e007b8-048c-4e4b-aa58-b47b4d750e95
+		sourceLineageTag: shipping_limit_date
+		summarizeBy: none
+		sourceColumn: shipping_limit_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column price
+		dataType: double
+		lineageTag: bf254052-e48a-4f82-80dc-b0eecd9eee1b
+		sourceLineageTag: price
+		summarizeBy: sum
+		sourceColumn: price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column freight_value
+		dataType: double
+		lineageTag: a7563863-79eb-417e-9364-458210234b64
+		sourceLineageTag: freight_value
+		summarizeBy: sum
+		sourceColumn: freight_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column order_purchase_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0a1e77bf-63a6-4cb0-ad70-9cfbef167897
+		sourceLineageTag: order_purchase_timestamp
+		summarizeBy: none
+		sourceColumn: order_purchase_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 84c76c9e-5b6f-453d-b4fb-4dc4cd616f79
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: ffa14d5e-45b3-4b15-bfa8-8860d137ab91
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	column update_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8a6a6892-fe09-48df-aac1-2284034b24c3
+		sourceLineageTag: update_time
+		summarizeBy: none
+		sourceColumn: update_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9dc0fd3c-3cd7-4a4a-8c31-e938268c373f
+		sourceLineageTag: order_purchase_date
+		summarizeBy: none
+		sourceColumn: order_purchase_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_time
+		dataType: string
+		lineageTag: 207073cb-3777-49db-b45a-f356001aaa28
+		sourceLineageTag: order_purchase_time
+		summarizeBy: none
+		sourceColumn: order_purchase_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_value
+		dataType: double
+		lineageTag: 3a5f0a63-7151-4cb0-9cc5-2b0fb03f9e6a
+		sourceLineageTag: total_value
+		summarizeBy: sum
+		sourceColumn: total_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition order_item_gl = entity
+		mode: directLake
+		source
+			entityName: order_item_gl
+			schemaName: dbo
+			expressionSource: 'DirectLake - olist_LH'
+

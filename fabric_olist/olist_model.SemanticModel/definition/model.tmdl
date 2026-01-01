@@ -1,0 +1,37 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DirectLake - olist_LH"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
+
+annotation __TEdtr = 1
+
+ref table geolocation_bz
+ref table customer_bz
+ref table product_category_bz
+ref table seller_bz
+ref table product_bz
+ref table review_sl
+ref table order_item_gl
+ref table payment_gl
+ref table order_gl
+ref table Date_Table
+ref table DateTableTemplate_37818d9d-c8ef-4571-bb30-c981574b781a
+ref table LocalDateTable_6b2a3e27-ee1b-4c6e-bdf7-dd1afffa22a3
+ref table LocalDateTable_899ffb44-df81-47bc-a32b-9fca51d3c9e6
+ref table LocalDateTable_cc9a2d45-e303-4ad1-a82b-7acb92c9df9f
+ref table LocalDateTable_ff4a43a3-201a-484d-896a-609af64529af
+ref table Time_Table
+ref table LocalDateTable_ab61986a-480b-4e1b-9a2e-152c7f5c0576
+ref table 'Measure Table'
+ref table 'Price Adjustment'
+ref table 'States Metrics Selection'
+

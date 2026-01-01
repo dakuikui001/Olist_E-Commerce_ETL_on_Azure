@@ -1,0 +1,73 @@
+relationship 31c37320-7185-4cf1-9fea-86324b2e6043
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date_Table.Date
+	toColumn: LocalDateTable_6b2a3e27-ee1b-4c6e-bdf7-dd1afffa22a3.Date
+
+relationship 0396331d-c961-43a4-ab2d-eb177b831df5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date_Table.StartOfYear
+	toColumn: LocalDateTable_899ffb44-df81-47bc-a32b-9fca51d3c9e6.Date
+
+relationship 2583a71a-44e3-4f36-95d8-b8298d51fcd2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date_Table.StartOfMonth
+	toColumn: LocalDateTable_cc9a2d45-e303-4ad1-a82b-7acb92c9df9f.Date
+
+relationship bc47dcbd-4a58-473c-8d6b-8faabe249856
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Date_Table.StartOfWeek
+	toColumn: LocalDateTable_ff4a43a3-201a-484d-896a-609af64529af.Date
+
+relationship ac5a5104-d318-499a-9ba4-f83a0b1e33ef
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Time_Table.Time
+	toColumn: LocalDateTable_ab61986a-480b-4e1b-9a2e-152c7f5c0576.Date
+
+relationship 8419b274-577b-bd5f-5825-e11208a9b68e
+	fromColumn: customer_bz.customer_zip_code_prefix
+	toColumn: geolocation_bz.geolocation_city
+
+relationship abc7d03f-1f9e-574d-dbe9-0ee4f3d3910e
+	fromColumn: order_item_gl.product_id
+	toColumn: product_bz.product_id
+
+relationship 4ab0c5ff-5fc4-ceea-5850-a0c0405e117d
+	fromColumn: product_bz.product_category_name
+	toColumn: product_category_bz.product_category_name
+
+relationship 69da024d-2c40-dcd2-97a1-7d22f92466ed
+	fromColumn: order_item_gl.seller_id
+	toColumn: seller_bz.seller_id
+
+relationship 556fd0dc-26c9-b331-f7de-41e64ee577bd
+	fromColumn: order_gl.order_purchase_date
+	toColumn: Date_Table.Date
+
+relationship f075a0d4-648a-7bf7-5633-5c9c06450592
+	fromColumn: order_gl.order_purchase_time
+	toColumn: Time_Table.TimeKey
+
+relationship c02519de-dbf5-4f73-9403-fab2c0e3058b
+	isActive: false
+	fromColumn: order_item_gl.order_purchase_date
+	toColumn: Date_Table.Date
+
+relationship 73c5d259-cae4-ca69-8468-9237e3535f49
+	crossFilteringBehavior: bothDirections
+	fromColumn: payment_gl.order_id
+	toColumn: order_gl.order_id
+
+relationship 1472a7c0-4891-8ec2-068b-78962309d6fa
+	fromColumn: order_gl.customer_id
+	toColumn: customer_bz.customer_id
+
+relationship 713ec5b6-e280-afd0-1218-d63ab69a4099
+	fromColumn: review_sl.order_id
+	toColumn: order_gl.order_id
+
+relationship cad4526a-793f-ebb6-eba4-f1863f130608
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: bothDirections
+	fromColumn: order_item_gl.order_id
+	toColumn: order_gl.order_id
+

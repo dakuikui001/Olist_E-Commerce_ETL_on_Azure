@@ -1,0 +1,118 @@
+table product_bz
+	lineageTag: 8cf8a17d-d822-4f9a-a7f1-6f889a0d6ae4
+	sourceLineageTag: [dbo].[product_bz]
+
+	column product_id
+		dataType: string
+		lineageTag: 3e209d47-3f52-47e6-aef2-3e1a7c190a73
+		sourceLineageTag: product_id
+		summarizeBy: none
+		sourceColumn: product_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_category_name
+		dataType: string
+		lineageTag: 6fdeaba8-0848-4145-99c3-11b45e84dc4c
+		sourceLineageTag: product_category_name
+		summarizeBy: none
+		sourceColumn: product_category_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_name_lenght
+		dataType: int64
+		formatString: 0
+		lineageTag: 5396e298-3b14-4c9b-8ac5-44129fcd669a
+		sourceLineageTag: product_name_lenght
+		summarizeBy: sum
+		sourceColumn: product_name_lenght
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_description_lenght
+		dataType: int64
+		formatString: 0
+		lineageTag: 724483ac-a07c-4198-bc90-1bf71d40c78c
+		sourceLineageTag: product_description_lenght
+		summarizeBy: sum
+		sourceColumn: product_description_lenght
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_photos_qty
+		dataType: int64
+		formatString: 0
+		lineageTag: 005a79cd-1612-4003-9a45-2f9c1ebc28e7
+		sourceLineageTag: product_photos_qty
+		summarizeBy: sum
+		sourceColumn: product_photos_qty
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_weight_g
+		dataType: int64
+		formatString: 0
+		lineageTag: 516958e1-0a81-45d6-b36a-fa6bd908b0f8
+		sourceLineageTag: product_weight_g
+		summarizeBy: sum
+		sourceColumn: product_weight_g
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_length_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: c7ecc42b-fa85-4b2f-8c65-27761d02b33e
+		sourceLineageTag: product_length_cm
+		summarizeBy: sum
+		sourceColumn: product_length_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_height_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: fb77339e-f6bf-4f01-b4f6-e84fb331b7a7
+		sourceLineageTag: product_height_cm
+		summarizeBy: sum
+		sourceColumn: product_height_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column product_width_cm
+		dataType: int64
+		formatString: 0
+		lineageTag: 1b097129-bb0c-4a19-b5a8-05074af1b460
+		sourceLineageTag: product_width_cm
+		summarizeBy: sum
+		sourceColumn: product_width_cm
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 55a92b70-c516-4150-b1c1-a47135073887
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: e56c3f03-d854-422b-a89f-2a1a54ad2ef4
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	partition product_bz = entity
+		mode: directLake
+		source
+			entityName: product_bz
+			schemaName: dbo
+			expressionSource: 'DirectLake - olist_LH'
+

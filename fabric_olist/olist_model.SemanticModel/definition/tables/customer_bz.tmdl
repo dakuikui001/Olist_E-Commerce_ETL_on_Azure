@@ -1,0 +1,131 @@
+table customer_bz
+	lineageTag: 0dff6ddf-d809-4af5-972f-58267202c2c8
+	sourceLineageTag: [dbo].[customer_bz]
+
+	column customer_id
+		dataType: string
+		lineageTag: 0ff7efb1-5271-4eb4-8095-b5c90ea07ea8
+		sourceLineageTag: customer_id
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_unique_id
+		dataType: string
+		lineageTag: 13affac8-5538-4185-909f-8e07ac0fe542
+		sourceLineageTag: customer_unique_id
+		summarizeBy: none
+		sourceColumn: customer_unique_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_zip_code_prefix
+		dataType: string
+		lineageTag: db0b8cc2-a54d-4098-b76c-41528816e07c
+		sourceLineageTag: customer_zip_code_prefix
+		summarizeBy: none
+		sourceColumn: customer_zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_city
+		dataType: string
+		lineageTag: 53364215-651c-4dfb-a735-6ba899926e13
+		sourceLineageTag: customer_city
+		summarizeBy: none
+		sourceColumn: customer_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_state
+		dataType: string
+		lineageTag: 05bd7974-844b-483f-8480-777f60d9d7d1
+		sourceLineageTag: customer_state
+		summarizeBy: none
+		sourceColumn: customer_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_name
+		dataType: string
+		lineageTag: fb803bd1-4e3c-4e8c-b02e-e0a5d25d3d2f
+		sourceLineageTag: first_name
+		summarizeBy: none
+		sourceColumn: first_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: fb2d1fce-839b-43b8-bc30-959fae72d2a7
+		sourceLineageTag: last_name
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_name
+		dataType: string
+		lineageTag: a2ef264b-bfa9-4086-80d6-1c82c4be38c2
+		sourceLineageTag: full_name
+		summarizeBy: none
+		sourceColumn: full_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 71379cf7-7ba3-4421-9b3c-27639d6e7adb
+		sourceLineageTag: gender
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column date_of_birth
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 96c57252-8cd4-4b55-8dc8-954af555a96a
+		sourceLineageTag: date_of_birth
+		summarizeBy: none
+		sourceColumn: date_of_birth
+
+		annotation SummarizationSetBy = Automatic
+
+	column age
+		dataType: int64
+		formatString: 0
+		lineageTag: e8c17a37-76c2-49a1-b47e-14726707e5fd
+		sourceLineageTag: age
+		summarizeBy: sum
+		sourceColumn: age
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 67e1165d-42c6-4f0c-9ecb-a7266f082737
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: ba475222-2ae0-4484-a82b-afd7482a098b
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer_bz = entity
+		mode: directLake
+		source
+			entityName: customer_bz
+			schemaName: dbo
+			expressionSource: 'DirectLake - olist_LH'
+

@@ -1,0 +1,32 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "0a941386-c359-a943-41ba-731fec000389",
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "parameters": {
+            "Once": {
+              "value": "True",
+              "type": "bool"
+            },
+            "ProcessingTime": {
+              "value": "5 seconds",
+              "type": "string"
+            }
+          }
+        },
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "run_job",
+        "dependsOn": []
+      }
+    ]
+  }
+}

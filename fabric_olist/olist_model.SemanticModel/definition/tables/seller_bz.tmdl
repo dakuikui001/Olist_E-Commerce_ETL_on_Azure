@@ -1,0 +1,66 @@
+table seller_bz
+	lineageTag: d7c4fade-7e2e-450d-88c1-bc841a1ce768
+	sourceLineageTag: [dbo].[seller_bz]
+
+	column seller_id
+		dataType: string
+		lineageTag: dfa66016-55c9-44b7-9ee2-27f04c5d6120
+		sourceLineageTag: seller_id
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_zip_code_prefix
+		dataType: string
+		lineageTag: 3c8d90f8-6517-4d58-8d6f-7339d175d171
+		sourceLineageTag: seller_zip_code_prefix
+		summarizeBy: none
+		sourceColumn: seller_zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_city
+		dataType: string
+		lineageTag: 3274dfce-e304-4859-b8cb-301c37e521a3
+		sourceLineageTag: seller_city
+		summarizeBy: none
+		sourceColumn: seller_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_state
+		dataType: string
+		lineageTag: 79569423-9340-4c47-a9f9-1a20ccbe2a6c
+		sourceLineageTag: seller_state
+		summarizeBy: none
+		sourceColumn: seller_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 07309d27-cbfa-40f8-9005-d4d3af416220
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: 9d3d0db5-9803-4873-b362-c47c22b9f1a0
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	partition seller_bz = entity
+		mode: directLake
+		source
+			entityName: seller_bz
+			schemaName: dbo
+			expressionSource: 'DirectLake - olist_LH'
+

@@ -1,0 +1,77 @@
+table geolocation_bz
+	lineageTag: 0baebe19-1987-4e34-99d7-3f2b7739c3ce
+	sourceLineageTag: [dbo].[geolocation_bz]
+
+	column geolocation_zip_code_prefix
+		dataType: string
+		lineageTag: e431599c-e188-4ab2-9a90-c4ecf8e1e98c
+		sourceLineageTag: geolocation_zip_code_prefix
+		summarizeBy: none
+		sourceColumn: geolocation_zip_code_prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column geolocation_lat
+		dataType: int64
+		formatString: 0
+		lineageTag: e7012b1a-1b7c-4ed7-bdf7-2e59af3422e0
+		sourceLineageTag: geolocation_lat
+		summarizeBy: none
+		sourceColumn: geolocation_lat
+
+		annotation SummarizationSetBy = Automatic
+
+	column geolocation_lng
+		dataType: int64
+		formatString: 0
+		lineageTag: e32e03a4-a3e6-4adf-91f7-475af5d81d72
+		sourceLineageTag: geolocation_lng
+		summarizeBy: none
+		sourceColumn: geolocation_lng
+
+		annotation SummarizationSetBy = Automatic
+
+	column geolocation_city
+		dataType: string
+		lineageTag: 2efb7c7a-bab8-42a3-b5ca-4dae481d9aff
+		sourceLineageTag: geolocation_city
+		summarizeBy: none
+		sourceColumn: geolocation_city
+
+		annotation SummarizationSetBy = Automatic
+
+	column geolocation_state
+		dataType: string
+		lineageTag: b1372599-809b-45d0-bbcb-c1e667971c60
+		sourceLineageTag: geolocation_state
+		summarizeBy: none
+		sourceColumn: geolocation_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column load_time
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 9b3d6e63-3805-4eee-8b02-500c56380010
+		sourceLineageTag: load_time
+		summarizeBy: none
+		sourceColumn: load_time
+
+		annotation SummarizationSetBy = Automatic
+
+	column source_file
+		dataType: string
+		lineageTag: 8422af0d-e8c4-48e7-8211-b47112fa7494
+		sourceLineageTag: source_file
+		summarizeBy: none
+		sourceColumn: source_file
+
+		annotation SummarizationSetBy = Automatic
+
+	partition geolocation_bz = entity
+		mode: directLake
+		source
+			entityName: geolocation_bz
+			schemaName: dbo
+			expressionSource: 'DirectLake - olist_LH'
+
