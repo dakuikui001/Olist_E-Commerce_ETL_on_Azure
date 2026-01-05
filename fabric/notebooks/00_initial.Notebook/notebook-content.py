@@ -383,7 +383,7 @@ setupBronzeHelper.validate()
 
 # CELL ********************
 
-%run great_expectations_single_df
+%run great_expectations_common
 
 # METADATA ********************
 
@@ -442,7 +442,7 @@ customer_df = customer_df.withColumn('load_time', current_timestamp())\
 
 # CELL ********************
 
-validate_and_insert_single_dataframe(customer_df, "customer_bz")
+validate_and_insert_process_batch(customer_df, "", "olist_LH","initial", "customer_bz")
 
 # METADATA ********************
 
@@ -484,7 +484,7 @@ geolocation_df = geolocation_df.withColumn('load_time', current_timestamp())\
 
 # CELL ********************
 
-validate_and_insert_single_dataframe(geolocation_df, "geolocation_bz")
+validate_and_insert_process_batch(geolocation_df, "", "olist_LH","initial", "geolocation_bz")
 
 # METADATA ********************
 
@@ -530,7 +530,7 @@ product_df = product_df.withColumn('load_time', current_timestamp())\
 
 # CELL ********************
 
-validate_and_insert_single_dataframe(product_df, "product_bz")
+validate_and_insert_process_batch(product_df, "", "olist_LH","initial", "product_bz")
 
 # METADATA ********************
 
@@ -571,7 +571,7 @@ seller_df = seller_df.withColumn('load_time', current_timestamp())\
 
 # CELL ********************
 
-validate_and_insert_single_dataframe(seller_df, "seller_bz")
+validate_and_insert_process_batch(seller_df, "", "olist_LH","initial", "seller_bz")
 
 # METADATA ********************
 
@@ -610,7 +610,7 @@ product_category_df = product_category_df.withColumn('load_time', current_timest
 
 # CELL ********************
 
-validate_and_insert_single_dataframe(product_category_df, "product_category_bz")
+validate_and_insert_process_batch(product_category_df, "", "olist_LH","initial", "product_category_bz")
 
 # METADATA ********************
 

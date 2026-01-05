@@ -40,7 +40,7 @@ ProcessingTime = '5 seconds'
 
 # CELL ********************
 
-%run great_expectations_processing
+%run great_expectations_common
 
 # METADATA ********************
 
@@ -120,7 +120,7 @@ bronze.consume(Once, ProcessingTime)
 
 # CELL ********************
 
-df = spark.sql("SELECT * FROM olist_LH.dbo.data_quality_quarantine LIMIT 1000")
+df = spark.sql("SELECT * FROM olist_LH.dbo.data_quality_quarantine order by ingestion_time DESC LIMIT 1000")
 display(df)
 
 # METADATA ********************

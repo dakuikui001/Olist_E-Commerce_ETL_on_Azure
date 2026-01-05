@@ -194,7 +194,7 @@ class Bronze():
         table_name = path 
         
         stream_writer = (df.writeStream
-            .foreachBatch(lambda micro_df, batch_id: validate_and_insert_process_batch(micro_df, batch_id, table_name))
+            .foreachBatch(lambda micro_df, batch_id: validate_and_insert_process_batch(micro_df,"", "olist_LH", batch_id, table_name))
             .option("checkpointLocation", f"{self.bronze}/{path}/checkpoints")
             .queryName(query_name)
         )
